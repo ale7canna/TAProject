@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import facebook4j.Friend;
 import twitter4j.AccountSettings;
 import twitter4j.IDs;
 import twitter4j.PagableResponseList;
@@ -62,20 +63,6 @@ public class callback extends HttpServlet {
 		RequestToken requestToken = (RequestToken) request.getSession().getAttribute("requestToken");
 		Twitter twitter = (Twitter)request.getSession().getAttribute("twitter");
 		
-		
-		/*
-		ConfigurationBuilder builder = new ConfigurationBuilder();
-		builder.setOAuthConsumerKey(CONSUMER_KEY);
-		builder.setOAuthConsumerSecret(CONSUMER_SECRET);
-		Configuration conf = builder.build();
-		
-		
-		Twitter twitter = new TwitterFactory(conf).getInstance();
-		*/
-		
-		
-		
-		
 		try {
 			
 			twitter4j.auth.AccessToken accessToken = twitter.getOAuthAccessToken(requestToken, pin);
@@ -97,18 +84,15 @@ public class callback extends HttpServlet {
 				out.println("\n" + s.getText());
 			}
 			
-			IDs ids = twitter.getFollowersIDs(100);
-			
+		
 			//STAMPA FOLLOWERS
-			
-			
 			out.println("------------------------FOLLOWERS\n");
 			PagableResponseList<User> fol = twitter.getFollowersList(twitter.getId(), -1);
 			for (int k = 0; k< fol.size(); k++)
 				out.println("\n"+fol.get(k).getName());
 			
 			while (fol.hasNext()){
-				out.println("\n" + String.valueOf(fol.hasNext()));
+				out.println("\n		- " + String.valueOf(fol.hasNext()));
 				
 				fol = twitter.getFollowersList(twitter.getId(), fol.getNextCursor());
 				
@@ -119,18 +103,28 @@ public class callback extends HttpServlet {
 
 
 				
-			
+			//STAMPA FOLLOWINGS
 			out.println("------------------------FOLLOWINGS\n");
 			PagableResponseList<User> friends = twitter.getFriendsList(twitter.getId(), -1);
 			for (int k = 0; k< friends.size(); k++)
 				out.println("\n"+friends.get(k).getName());
 			
 			while (friends.hasNext()){
-				out.println("\n" + String.valueOf(friends.hasNext()));
-				friends= twitter.getFollowersList(twitter.getId(), friends.getNextCursor());
+				out.println("\n 	- " + String.valueOf(friends.hasNext()));
+				friends = twitter.getFriendsList(twitter.getId(), friends.getNextCursor());
 				
-				for (int k = 0; k< friends.size(); k++)
-					out.println("\n"+ friends.get(k).getName());
+				for (int k = 0; k< friends.size(); k++){
+					User friend = friends.get(k);
+					out.println("\n 	- "+ friend.getName() + "		Numero di amici: " + friend.getFriendsCount());
+					PagableResponseList<User> followingDiFollowing = twitter.getFriendsList(friend.getId(), -1);
+					
+					for (int j = 0; j < followingDiFollowing.size(); j ++){
+						User u = followingDiFollowing.get(j);
+						out.println("\n 		- " + u.getName() + "		Numero di amici: " + u.getFriendsCount());
+					}
+					
+					
+				}
 				out.println("\n\n\n\n");
 			}
 			
@@ -144,8 +138,8 @@ public class callback extends HttpServlet {
 		
 		
 		
-		
-									
+		out.println("<a href='./HelloWorld'> Torna a Home </a>");
+		out.close();							
 	}
 
 	/**

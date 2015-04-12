@@ -39,10 +39,12 @@ public class HelloWorld extends HttpServlet {
 		// TODO Auto-generated method stub
 		response.setContentType("text/plain");
 		PrintWriter out = response.getWriter();
-		/*out.println("Hello");
-		out.close();
+		
+		out.println(request.getRequestURL());
+		out.println("Hello");
 		
 		
+		/*
 		OAuthService service = new ServiceBuilder()
 		.provider(TwitterApi.class)
 		.apiKey("lcG8Dlc7n21QShe0PQPD1zhbV")
@@ -67,7 +69,8 @@ public class HelloWorld extends HttpServlet {
 		AccessToken accessToken = null;
 		String authUrl = "";
 		try {
-			requestToken = twit.getOAuthRequestToken("http://127.0.0.1/TAProject/callback");
+			String callbackURL = request.getRequestURI();
+			requestToken = twit.getOAuthRequestToken();
 			authUrl = requestToken.getAuthenticationURL();
 			
 			
@@ -82,8 +85,8 @@ public class HelloWorld extends HttpServlet {
 		
 		request.getSession().setAttribute("requestToken", requestToken);
 		request.getSession().setAttribute("twitter", twit);
-		response.sendRedirect(authUrl);
-		
+		//response.sendRedirect(authUrl);
+
 				
 	}
 
