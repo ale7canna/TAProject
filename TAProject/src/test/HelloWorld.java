@@ -69,8 +69,9 @@ public class HelloWorld extends HttpServlet {
 		AccessToken accessToken = null;
 		String authUrl = "";
 		try {
-			String callbackURL = request.getRequestURI();
-			requestToken = twit.getOAuthRequestToken();
+//			String callbackURL = request.getRequestURI();
+			String callbackURL = "http://127.0.0.1/TAProject/callback";
+			requestToken = twit.getOAuthRequestToken(callbackURL);
 			authUrl = requestToken.getAuthenticationURL();
 			
 			
@@ -85,7 +86,7 @@ public class HelloWorld extends HttpServlet {
 		
 		request.getSession().setAttribute("requestToken", requestToken);
 		request.getSession().setAttribute("twitter", twit);
-		//response.sendRedirect(authUrl);
+		response.sendRedirect(authUrl);
 
 				
 	}
