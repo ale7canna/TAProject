@@ -8,8 +8,7 @@
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
-	<classpathentry kind="lib" path="C:/SDK/tomcat/lib/servlet-api.jar" sourcepath="C:/Users/Alessandro/.m2/repository/org/apache/tomcat/tomcat-servlet-api/8.0.21/tomcat-servlet-api-8.0.21-sources.jar"/>
-	<classpathentry kind="lib" path="C:/Users/AlE/git/TAProject/TAProject/WebContent/WEB-INF/lib/scribe-1.3.7.jar"/>
-	<classpathentry kind="lib" path="C:/Users/AlE/git/TAProject/TAProject/WebContent/WEB-INF/lib/twitter4j-core-4.0.3.jar"/>
+	<classpathentry kind="lib" path="D:/Users/Alessandro/git/TAProject/TAProject/WebContent/WEB-INF/lib/servlet-api.jar" sourcepath="C:/Users/Alessandro/.m2/repository/org/apache/tomcat/tomcat-servlet-api/8.0.21/tomcat-servlet-api-8.0.21-sources.jar"/>
+	<classpathentry kind="lib" path="D:/Users/Alessandro/git/TAProject/TAProject/WebContent/WEB-INF/lib/twitter4j-core-4.0.3.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

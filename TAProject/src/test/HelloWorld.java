@@ -70,7 +70,7 @@ public class HelloWorld extends HttpServlet {
 		String authUrl = "";
 		try {
 //			String callbackURL = request.getRequestURI();
-			String callbackURL = "http://127.0.0.1/TAProject/callback";
+			String callbackURL = "http://localhost/TAProject/callback";
 			requestToken = twit.getOAuthRequestToken(callbackURL);
 			authUrl = requestToken.getAuthenticationURL();
 			

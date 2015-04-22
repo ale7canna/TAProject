@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import facebook4j.Friend;
 import twitter4j.AccountSettings;
 import twitter4j.IDs;
 import twitter4j.PagableResponseList;
